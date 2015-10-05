@@ -1,1 +1,0 @@
-Ikarious playground for Android
