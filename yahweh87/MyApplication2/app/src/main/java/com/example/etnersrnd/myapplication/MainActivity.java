@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toast.makeText(getApplicationContext(), "This time is Github Test", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "This time is Slack Test", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
