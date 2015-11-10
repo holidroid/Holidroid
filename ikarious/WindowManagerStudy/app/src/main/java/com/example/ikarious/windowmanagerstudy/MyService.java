@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MyService extends Service {
@@ -24,25 +27,58 @@ public class MyService extends Service {
     private float mTouchY;
     private int mViewX;
     private int mViewY;
+    private Button mSendBtn;
+    private EditText mSMSMsg, mSMSNumber;
+    private int mRandom;
 
-    //최초 기동시 한번만 호
+
+    //최초 기동시 한번만 호출
     @Override
     public void onCreate() {
         super.onCreate();
 
         LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = mInflater.inflate(R.layout.my_window_layout, null);
+        mSendBtn = (Button) mView.findViewById(R.id.btn_send_sms);
+        mSMSMsg = (EditText) mView.findViewById(R.id.edit_sms_msg);
+        mSMSNumber = (EditText) mView.findViewById(R.id.edit_sms_number);
+
+
 
                 mParams = new WindowManager.LayoutParams (
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.TYPE_PHONE,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 PixelFormat.TRANSLUCENT
         );
 
         mManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mManager.addView(mView, mParams);
+
+        mSendBtn.setOnClickListener(new View.OnClickListener(){
+
+
+            @Override
+            public void onClick(View v) {
+                String sms_msg = mSMSMsg.getText().toString();
+                String sms_number = mSMSNumber.getText().toString();
+
+                if(sms_msg.isEmpty() && sms_number.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "SMS MSG AND NUMBER...",Toast.LENGTH_SHORT ).show();
+                    return;
+                }
+
+                SmsManager sms_manager = SmsManager.getDefault();
+                sms_manager.sendTextMessage(sms_number, null, sms_msg, null, null);
+
+                mSMSMsg.setText("");
+                Toast.makeText(getApplicationContext(), "SUCCESS SEND MESSAGE", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
         mView.setOnTouchListener(new View.OnTouchListener() {
             @Override

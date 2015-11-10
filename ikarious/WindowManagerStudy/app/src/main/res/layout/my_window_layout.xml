@@ -18,6 +18,12 @@
             android:layout_centerInParent="true"
             />
 
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerInParent="true"
+            />
 
 
 
@@ -26,17 +32,38 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:background="@android:color/holo_red_light"
         android:layout_below="@+id/title_layout"
         >
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:id="@+id/edit_sms_msg"
+            android:hint="보낼 메세지를 작성하세요"
+            android:textColor="@android:color/holo_red_dark"
+            />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_centerInParent="true"
+        <EditText
+            android:layout_below="@id/edit_sms_msg"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/edit_sms_number"
+            android:hint="보낼 전화번호를 입력하세"
+            android:inputType="number"
+            android:textColor="@android:color/holo_green_dark"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/btn_send_sms"
+            android:layout_below="@id/edit_sms_number"
+            android:text="SEND SMS"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_dark"
             />
 
 

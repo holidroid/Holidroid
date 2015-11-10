@@ -5,7 +5,31 @@
     android:orientation="vertical"
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/edit_area_layout"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/edit_input_number"
+            android:hint="인증번호를 입력하세요"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_check_sms"
+            android:text="확"
+            android:layout_alignRight="@id/edit_input_number"
+            />
+
+    </RelativeLayout>
+
     <TextView
+        android:layout_below="@id/edit_area_layout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:text="Service Test"
